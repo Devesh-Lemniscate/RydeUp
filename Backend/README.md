@@ -49,3 +49,46 @@ The request body must be in JSON format and include the following fields:
   }
 }
 ```
+
+## Endpoint: `/users/login`
+
+### Description
+This endpoint allows an existing user to log in. It validates the provided email and password, verifies the user credentials, and returns a JSON Web Token along with the user details upon successful authentication.
+
+### Method
+`POST`
+
+### URL
+`/users/login`
+
+### Request Body
+The request body must be in JSON format and include the following fields:
+
+| Field    | Type   | Required | Details                                                                  |
+|----------|--------|----------|--------------------------------------------------------------------------|
+| `email`  | String | Yes      | Must be a valid email address.                                           |
+| `password`| String| Yes      | Minimum of 6 characters; must match the stored user password.            |
+
+#### Example Request
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+#### Example Response
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "64f8c0e5b5d6c9a1b2c3d4e5",
+    "fullname": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "<Hashed Password>",
+    "socketId": null
+  }
+}
