@@ -92,3 +92,62 @@ The request body must be in JSON format and include the following fields:
     "socketId": null
   }
 }
+```
+
+## Endpoint: `/users/profile`
+
+### Description
+This endpoint retrieves the profile of the authenticated user. It requires a valid JSON Web Token, which can be provided in the `Authorization` header or as a cookie.
+
+### Method
+`GET`
+
+### URL
+`/users/profile`
+
+### Authentication
+Requires a valid token either via the `Authorization` header (as `Bearer <token>`) or a cookie named `token`.
+
+### Example Request
+_No request body is required._
+
+#### Example Response
+```json
+{
+  "user": {
+    "_id": "64f8c0e5b5d6c9a1b2c3d4e5",
+    "fullname": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "socketId": null
+  }
+}
+```
+
+---
+
+## Endpoint: `/users/logout`
+
+### Description
+This endpoint logs out the authenticated user by clearing the authentication cookie and blacklisting the token. It ensures that the token cannot be reused for subsequent requests.
+
+### Method
+`GET`
+
+### URL
+`/users/logout`
+
+### Authentication
+Requires a valid token either via the `Authorization` header or a cookie named `token`.
+
+### Example Request
+_No request body is required._
+
+#### Example Response
+```json
+{
+  "message": "Logged out successfully"
+}
+```
